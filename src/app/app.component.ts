@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {GiphyService, Giphy} from './giphy.service';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,21 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'giphy-app';
+
+  giphys: Giphy[] = [];
+
+  constructor(private giphySvc: GiphyService) { }
+
+  performSearch($event: string) {
+    console.log('Search this: ', $event);
+    this.giphySvc.search($event)
+      .then((result: Giphy[]) => {
+        console.log(result);
+        this.giphys = result;
+      })
+      .catch(err => {
+        console.error("ERROR: ", err);
+      })
+  }
+
 }

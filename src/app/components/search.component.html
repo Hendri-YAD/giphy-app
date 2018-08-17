@@ -1,0 +1,9 @@
+<form #searchForm="ngForm" (ngSubmit)="performSearch()" >
+
+  <mat-form-field>
+    <input type="text" name="searchTerms" placeholder="Enter your search terms" matInput ngModel required>
+  </mat-form-field>
+  <button type="submit" mat-button mat-raised-button mat-icon-button color="accent" [disabled]="searchForm.invalid" >
+    <mat-icon>search</mat-icon>
+  </button>
+</form>
